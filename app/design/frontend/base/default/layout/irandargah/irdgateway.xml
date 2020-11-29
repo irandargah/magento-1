@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+    <irdgateway_processing_redirect>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>irandargah/irdgateway/blank.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="irdgateway/payment_checkout_redirect" name="ird_gateway_redirect" template="irandargah/irdgateway/payment/checkout/redirect.phtml" />
+        </reference>
+    </irdgateway_processing_redirect>
+    <irdgateway_processing_failure>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>irandargah/irdgateway/blank.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="irdgateway/transaction_failure" name="ird_gateway_failure" template="irandargah/irdgateway/transaction/failure.phtml" />
+        </reference>
+    </irdgateway_processing_failure>
+</layout>

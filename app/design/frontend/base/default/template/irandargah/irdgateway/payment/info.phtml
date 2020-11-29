@@ -1,0 +1,15 @@
+<?php
+$_orderId = $this->getMethod()->getInfoInstance()->getParentId();
+$_paymentInfo = $this->getPaymentInfo($_orderId);
+
+echo '<strong>' . $this->getMethod()->getTitle() . '</strong><br/>';
+
+if (!$_paymentInfo->getId()) {
+    echo $this->__('You will be redirected to IranDargah gateway.');
+} else {
+    $_description = $this->getPaymentDescription($_orderId);
+
+    echo '<em>' . $this->__($_description) . '</em><br />';
+
+    echo $this->__('Reference Id: %s', $this->htmlEscape($_paymentInfo->getTransactionReferenceId())) . '<br />';
+}

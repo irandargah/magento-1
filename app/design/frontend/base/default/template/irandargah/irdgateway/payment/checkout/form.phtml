@@ -1,0 +1,8 @@
+<ul id="payment_form_<?php echo $this->getMethodCode() ?>" style="display:none">
+    <li>
+        <?php echo Mage::helper('irdgateway')->__('You will be redirected to IranDargah gateway when you place an order.'); ?>
+    </li>
+    <div style="padding:10px 15px 15px;">
+      <img src="<?php echo $this->getPaymentImageSrc(); ?>" alt="<?php echo $this->__('Ird payment methods') ?>" />
+    </div>
+</ul>

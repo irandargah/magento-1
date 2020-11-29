@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!--
+ IranDargah Ird Gateway
+
+ @category   IranDargah
+ @package    IranDargah_IrdGateway
+ @version    v1.0.0
+ @copyright  (c)1399 irandargah.com
+-->
+<config>
+	<modules>
+		<IranDargah_IrdGateway>
+			<version>1.0.0</version>
+			<title>IranDargah Online Payment</title>
+			<codPool>community</codPool>
+		</IranDargah_IrdGateway>
+	</modules>
+	<global>
+		<blocks>
+			<irdgateway>
+				<class>IranDargah_IrdGateway_Block</class>
+			</irdgateway>
+		</blocks>
+		<helpers>
+			<irdgateway>
+				<class>IranDargah_IrdGateway_Helper</class>
+			</irdgateway>
+		</helpers>
+		<models>
+			<irdgateway>
+				<class>IranDargah_IrdGateway_Model</class>
+				<resourceModel>irdgateway_resource</resourceModel>
+			</irdgateway>
+			<irdgateway_resource>
+				<class>IranDargah_IrdGateway_Model_Resource</class>
+				<deprecatedNode>irdgateway_mysql4</deprecatedNode>
+				<entities>
+					<transaction>
+						<table>irandargah_gateway_payment</table>
+					</transaction>
+				</entities>
+			</irdgateway_resource>
+		</models>
+		<resources>
+			<irdgateway_setup>
+				<setup>
+					<module>IranDargah_IrdGateway</module>
+					<class>IranDargah_IrdGateway_Model_Resource_Setup</class>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</irdgateway_setup>
+			<irdgateway_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</irdgateway_write>
+			<irdgateway_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</irdgateway_read>
+		</resources>
+	</global>
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<IranDargah_IrdGateway>
+					<files>
+						<default>IranDargah_IrdGateway.csv</default>
+					</files>
+				</IranDargah_IrdGateway>
+			</modules>
+		</translate>
+	</adminhtml>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<irdgateway before="Mage_Adminhtml">IranDargah_IrdGateway_Adminhtml</irdgateway>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<frontend>
+		<secure_url>
+			<irdgateway_processing>/irdgateway/processing</irdgateway_processing>
+		</secure_url>
+		<routers>
+			<irdgateway>
+				<use>standard</use>
+				<args>
+					<module>IranDargah_IrdGateway</module>
+					<frontName>irdgateway</frontName>
+				</args>
+			</irdgateway>
+		</routers>
+
+		<translate>
+			<modules>
+				<IranDargah_IrdGateway>
+					<files>
+						<default>IranDargah_IrdGateway.csv</default>
+					</files>
+				</IranDargah_IrdGateway>
+			</modules>
+		</translate>
+		<layout>
+			<updates>
+				<irdgateway>
+					<file>irandargah/irdgateway.xml</file>
+				</irdgateway>
+			</updates>
+		</layout>
+	</frontend>
+
+	<default>
+		<payment>
+			<irdgateway>
+				<active>0</active>
+				<model>irdgateway/IranDargah</model>
+				<title>IranDargah Online Payment</title>
+				<tooman_currency>0</tooman_currency>
+				<allowspecific>0</allowspecific>
+				<specificcountry>IR</specificcountry>
+			</irdgateway>
+		</payment>
+	</default>
+</config>
